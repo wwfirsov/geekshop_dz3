@@ -3,14 +3,14 @@ from django.db import models
 
 class ProductCategory(models.Model):
     name = models.CharField(
-        max_length=64,
         verbose_name='имя',
-        unique=True,
+        max_length=64,
+        unique=True
     )
 
     description = models.TextField(
         verbose_name='описание',
-        blank=True,
+        blank=True
     )
 
     created = models.DateTimeField(
@@ -37,8 +37,8 @@ class Product(models.Model):
     )
 
     image = models.ImageField(
-        upload_to='products_images',
-        blank=True
+        upload_to='product_images',
+        blank=True,
     )
 
     short_desc = models.CharField(
@@ -55,7 +55,7 @@ class Product(models.Model):
     price = models.DecimalField(
         max_digits=8,
         decimal_places=2,
-        verbose_name='цена',
+        verbose_name='цена'
     )
 
     quantity = models.PositiveIntegerField(
@@ -63,18 +63,5 @@ class Product(models.Model):
         default=0
     )
 
-    created = models.DateTimeField(
-        auto_now_add=True
-    )
-
-    updated = models.DateTimeField(
-        auto_now=True
-    )
-
     def __str__(self):
         return f"{self.name} ({self.category.name})"
-
-    class Meta:
-        ordering = ['-updated']
-        verbose_name = 'товар'
-        verbose_name_plural = 'товары'

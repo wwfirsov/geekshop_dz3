@@ -1,15 +1,8 @@
-from django.shortcuts import render
+from django.urls import path
+from .views import products
 
-from mainapp.models import ProductCategory
+app_name = 'mainapp'
 
-
-def products(request):
-    title = 'Каталог'
-
-    links_menu = ProductCategory.objects.all()
-    context = {
-        'title': title,
-        'links_menu': links_menu,
-    }
-
-    return render(request, 'mainapp/products.html', context)
+urlpatterns = [
+    path('', products, name='main'),
+]
